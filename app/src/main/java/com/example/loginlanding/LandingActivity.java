@@ -2,6 +2,8 @@ package com.example.loginlanding;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -14,6 +16,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LandingActivity extends AppCompatActivity {
+
+    public static final String ACTIVITY_LABEL = "LANDING_ACTIVITY_COM_DACLINK";
 
     private TextView textViewResult;
     @Override
@@ -58,5 +62,11 @@ public class LandingActivity extends AppCompatActivity {
                 textViewResult.setText(t.getMessage());
             }
         });
+    }
+
+    public static Intent getIntent(Context context, String toastValue){
+        Intent intent = new Intent(context, LandingActivity.class);
+        intent.putExtra(LandingActivity.ACTIVITY_LABEL, toastValue);
+        return intent;
     }
 }
