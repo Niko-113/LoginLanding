@@ -1,5 +1,6 @@
 package com.example.loginlanding;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -28,6 +29,8 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.loginlanding", appContext.getPackageName());
+
+
     }
 
 
@@ -40,6 +43,16 @@ public class ExampleInstrumentedTest {
 //        Intent intent = LandingActivity.getIntent(appContext.getApplicationContext(), "test");
 //        appContext.startActivity(intent);
 //    }
+
+    @Test
+    public void intentExtra(){
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Intent intent = LandingActivity.getIntent(appContext.getApplicationContext(), "irrelevant");
+
+
+        intent.putExtra("TEST_VALUE", 3);
+        assertEquals(intent.getExtras().get("TEST_VALUE"), 3);
+    }
 
     @Test
     public void verifyUser(){

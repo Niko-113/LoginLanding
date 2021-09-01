@@ -20,12 +20,21 @@ public class LandingActivity extends AppCompatActivity {
     public static final String ACTIVITY_LABEL = "LANDING_ACTIVITY_COM_DACLINK";
 
     private TextView textViewResult;
+    private TextView welcomeText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
 
+
         textViewResult = findViewById(R.id.text_view_result);
+        welcomeText = findViewById(R.id.welcomeText);
+
+
+        String username = getIntent().getExtras().getString("username");
+        int userID = getIntent().getExtras().getInt("userID");
+        welcomeText.setText("Welcome, User No. " + userID + ": " + username);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
@@ -34,7 +43,7 @@ public class LandingActivity extends AppCompatActivity {
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-        Call<List<Post>> call = jsonPlaceHolderApi.getPosts();
+        Call<List<Post>> call = jsonPlaceHolderApi.getPosts(userID);
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
@@ -48,7 +57,7 @@ public class LandingActivity extends AppCompatActivity {
 
                 for (Post post : posts){
                     String content = "";
-                    content += "ID: " + post.getId();
+                    content += "ID: " + post.getId() + "\n";
                     content += "User ID " + post.getUserId() + "\n";
                     content += "Title: " + post.getTitle() + "\n";
                     content += "Text: " + post.getText() + "\n\n";
