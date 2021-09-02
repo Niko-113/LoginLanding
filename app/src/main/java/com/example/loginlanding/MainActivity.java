@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (verify(username, password)) {
             Intent intent = LandingActivity.getIntent(getApplicationContext(), "Welcome user!");
+            intent.putExtra("username", username);
+            intent.putExtra("userID", userDAO.getUserByUsername(username).getUserID());
             startActivity(intent);
         }
     }
@@ -56,10 +58,11 @@ public class MainActivity extends AppCompatActivity {
         User user = userDAO.getUserByUsername(username);
         if (user == null){
             Toast.makeText(this, "Username does not exist", Toast.LENGTH_SHORT).show();
-            // highlight
+            // TODO: highlight
             return false;
         }
         else if (!password.equals(user.getPassword())){
+            // TODO: highlight
             Toast.makeText(this, "Incorrect password for " + username, Toast.LENGTH_SHORT).show();
             return false;
         }

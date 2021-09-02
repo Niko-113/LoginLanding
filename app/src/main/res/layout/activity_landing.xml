@@ -7,9 +7,21 @@
     android:padding="8dp"
     tools:context=".LandingActivity">
 
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="166dp"
+        android:layout_height="28dp"
+        android:text="@string/welcomePlaceholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="375dp"
+        android:layout_height="611dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/text_view_result"
