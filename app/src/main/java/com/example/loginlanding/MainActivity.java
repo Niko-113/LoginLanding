@@ -58,12 +58,12 @@ public class MainActivity extends AppCompatActivity {
         User user = userDAO.getUserByUsername(username);
         if (user == null){
             Toast.makeText(this, "Username does not exist", Toast.LENGTH_SHORT).show();
-            // TODO: highlight
+            usernameText.requestFocus();
             return false;
         }
         else if (!password.equals(user.getPassword())){
-            // TODO: highlight
             Toast.makeText(this, "Incorrect password for " + username, Toast.LENGTH_SHORT).show();
+            passwordText.requestFocus();
             return false;
         }
 
